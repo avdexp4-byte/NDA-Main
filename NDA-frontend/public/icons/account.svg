@@ -1,0 +1,15 @@
+<!-- public/icons/account.svg -->
+<svg xmlns="http://www.w3.org/2000/svg" width="120" height="120" viewBox="0 0 24 24" fill="none">
+  <circle cx="12" cy="8" r="4"
+          stroke="#10b981"
+          stroke-width="1.6"
+          stroke-linecap="round"
+          stroke-linejoin="round"
+          fill="rgba(16,185,129,0.12)" />
+  <path d="M4 20V18C4 15.8 5.8 14 8 14H16C18.2 14 20 15.8 20 18V20"
+        stroke="#10b981"
+        stroke-width="1.6"
+        stroke-linecap="round"
+        stroke-linejoin="round"
+        fill="rgba(16,185,129,0.12)" />
+</svg>

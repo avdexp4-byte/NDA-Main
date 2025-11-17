@@ -1,0 +1,62 @@
+/* ========== CATEGORY GRID ========== */
+.category-grid {
+  display: grid;
+  gap: 18px;
+  grid-template-columns: repeat(1, 1fr);
+  margin-bottom: 0; /* Remove bottom margin */
+  justify-content: center;
+  padding: 0 8px;
+  align-items: stretch; /* Make all cards stretch to equal height */
+  min-height: 0; /* Prevent grid from expanding unnecessarily */
+}
+
+/* Medium screens (for tablets and smaller desktops) */
+@media (min-width: 640px) {
+  .category-grid {
+    grid-template-columns: repeat(2, 1fr);
+  }
+}
+
+/* Large screens (desktops) */
+@media (min-width: 1280px) {
+  .category-grid {
+    /* Use three columns on large screens and center the grid */
+    grid-template-columns: repeat(3, 1fr);
+    max-width: 1200px;
+    margin-left: auto;
+    margin-right: auto;
+  }
+}
+
+/* Add hover effects on the category card for better interactivity */
+.category-card {
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+/* Hover effect: scale card slightly and add shadow */
+.category-card:hover {
+  transform: scale(1.05);
+  box-shadow: 0 12px 40px rgba(16, 24, 40, 0.1);
+  cursor: pointer;
+}
+
+/* Focused category card with outline (for accessibility) */
+.category-card:focus {
+  outline: 3px solid rgba(79, 70, 229, 0.12);
+  outline-offset: 4px;
+}
+
+/* Small screens: Ensure the cards are responsive and not too squished */
+@media (max-width: 880px) {
+  .category-grid {
+    grid-template-columns: repeat(1, 1fr); /* Single column on smaller devices */
+    padding: 0 10px;
+  }
+}
+
+/* Extra small screens (mobile) */
+@media (max-width: 480px) {
+  .category-grid {
+    gap: 12px; /* Reduce gap between cards */
+  }
+}

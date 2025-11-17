@@ -1,0 +1,83 @@
+/* ========== DARK THEME (black UI) ========== */
+/* Toggle by adding class "dark" to body */
+body.dark {
+  --bg-0: linear-gradient(180deg,#000000 0%,#050505 60%,#000000 100%);
+  --surface: rgba(8,8,10,0.95);
+  --muted-1: #a0a7b3;
+  --text-1: #f1f5f9;
+  --shadow-1: 0 16px 50px rgba(0,0,0,0.8);
+  --card-border: rgba(255,255,255,0.05);
+  --panel-border: rgba(255,255,255,0.06);
+  --primary: #60a5fa;
+  background: var(--bg-0);
+  color: var(--text-1);
+}
+
+/* Dark mode styles for the button */
+body.dark .cta {
+  background: #000000;
+  color: #ffffff;
+  border: 1px solid rgba(255, 255, 255, 0.1);
+}
+body.dark .cta:hover {
+  background: #ffffff;
+  color: #000000;
+  border-color: #ffffff;
+}
+
+/* navbar becomes black */
+body.dark .site-header {
+  background: #000;
+  border-bottom: 1px solid rgba(255,255,255,0.08);
+  box-shadow: 0 1px 10px rgba(0,0,0,0.6);
+}
+body.dark .brand__subtitle { color: var(--muted-1); }
+body.dark .theme-toggle { color: var(--text-1); background: rgba(255,255,255,0.03); }
+body.dark .ghost-btn { color: var(--muted-1); }
+body.dark .cta { box-shadow: none; }
+
+/* cards & panels in dark */
+body.dark .category-card,
+body.dark .category-panel,
+body.dark .subcat-card {
+  background: var(--surface);
+  border-color: var(--card-border);
+  box-shadow: var(--shadow-1);
+}
+body.dark .category-card__icon-wrap {
+  background: rgba(255,255,255,0.02);
+  box-shadow: 0 6px 20px rgba(0,0,0,0.7);
+}
+body.dark .category-card__title,
+body.dark .page-title,
+body.dark .panel-badge { color: var(--text-1); }
+body.dark .category-card__desc,
+body.dark .panel-desc,
+body.dark .lead,
+body.dark .footer-inner .copyright { color: var(--muted-1); }
+body.dark .pill { background: rgba(255,255,255,0.02); color: var(--muted-1); }
+
+/* subcat dark adjustments */
+body.dark .subcat-card {
+  background: var(--surface);
+  border: 1px solid var(--card-border);
+  box-shadow: 0 10px 30px rgba(0,0,0,0.6);
+}
+body.dark .subcat-card__title { color: var(--text-1); }
+body.dark .subcat-card__desc { color: var(--muted-1); }
+body.dark .subcat-open { box-shadow: 0 6px 18px rgba(0,0,0,0.6); }
+body.dark .subcat-secondary { border-color: rgba(255,255,255,0.03); color: var(--muted-1); }
+
+/* footer dark */
+body.dark .site-footer {
+  background: #000;
+  border-top: 1px solid rgba(255,255,255,0.08);
+  color: var(--muted-1);
+}
+body.dark .footer-links a { color: var(--primary); }
+body.dark .footer-links a:hover { color: #93c5fd; }
+
+body.dark .theme-toggle[title]:hover::after {
+  background: var(--surface);
+  color: var(--text-1);
+}

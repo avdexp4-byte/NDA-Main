@@ -1,0 +1,36 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="120" height="120" viewBox="0 0 24 24" fill="none">
+    <!-- Building -->
+    <path d="M4 21h16M6 21V7l5-4 5 4v14H6z"
+          stroke="#3b82f6"
+          stroke-width="1.6"
+          stroke-linecap="round"
+          stroke-linejoin="round"
+          fill="rgba(59,130,246,0.1)" />
+    <path d="M10 11h4"
+            stroke="#3b82f6"
+            stroke-width="1.6"
+            stroke-linecap="round"
+            stroke-linejoin="round" />
+    <path d="M10 15h4"
+            stroke="#3b82f6"
+            stroke-width="1.6"
+            stroke-linecap="round"
+            stroke-linejoin="round" />
+    <!-- Antenna -->
+    <path d="M12 3V1"
+            stroke="#3b82f6"
+            stroke-width="1.6"
+            stroke-linecap="round"
+            stroke-linejoin="round" />
+    <!-- Coverage waves -->
+    <path d="M15 5a4 4 0 0 0-6 0"
+            stroke="#3b82f6"
+            stroke-width="1.6"
+            stroke-linecap="round"
+            stroke-linejoin="round" />
+    <path d="M17 3a8 8 0 0 0-10 0"
+            stroke="#3b82f6"
+            stroke-width="1.6"
+            stroke-linecap="round"
+            stroke-linejoin="round" />
+</svg>

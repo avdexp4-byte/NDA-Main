@@ -1,0 +1,23 @@
+{
+  "name": "ai-service-frontend",
+  "version": "0.1.0",
+  "type": "module",
+  "private": true,
+  "scripts": {
+    "dev": "vite",
+    "build": "vite build",
+    "preview": "vite preview"
+  },
+  "dependencies": {
+    "react": "^18.2.0",
+    "react-dom": "^18.2.0"
+  },
+  "optionalDependencies": {
+    "react-markdown": "^8.0.7",
+    "rehype-sanitize": "^5.0.1"
+  },
+  "devDependencies": {
+    "@vitejs/plugin-react": "^5.1.0",
+    "vite": "^7.2.2"
+  }
+}

@@ -1,0 +1,175 @@
+/* -----------------------------
+   Smooth theme transition (220ms)
+   Focused & lightweight to avoid jank.
+   ----------------------------- */
+@media (prefers-reduced-motion: no-preference) {
+  /* limit transitions to major surfaces only (no *), avoid box-shadow/transform */
+  body.theme-transition,
+  body.theme-transition .site-header,
+  body.theme-transition .main-content,
+  body.theme-transition .container,
+  body.theme-transition .category-card,
+  body.theme-transition .category-panel,
+  body.theme-transition .subcat-card,
+  body.theme-transition .site-footer,
+  body.theme-transition .brand__text,
+  body.theme-transition .category-card__icon-wrap {
+    transition:
+      background-color 220ms cubic-bezier(.22,.9,.32,1),
+      color 220ms cubic-bezier(.22,.9,.32,1),
+      border-color 220ms cubic-bezier(.22,.9,.32,1),
+      filter 220ms cubic-bezier(.22,.9,.32,1),
+      opacity 220ms cubic-bezier(.22,.9,.32,1);
+    will-change: background-color, color, opacity, filter;
+  }
+
+  /* Icon images: subtle brightness change */
+  body.theme-transition .category-card__icon-wrap img,
+  body.theme-transition .category-card__icon-wrap svg {
+    transition: filter 180ms ease, opacity 180ms ease, transform 240ms cubic-bezier(.22,.9,.32,1);
+  }
+
+  /* Prevent hover transform/box-shadow from animating as part of theme change:
+     keep those animations for pointer interactions only (separate timing). */
+  .category-card,
+  .subcat-card {
+    transition-property: box-shadow, transform;
+    transition-duration: 160ms;
+    transition-timing-function: ease-out;
+  }
+}
+
+/* Respect reduced motion preference */
+@media (prefers-reduced-motion: reduce) {
+  body.theme-transition,
+  body.theme-transition .site-header,
+  body.theme-transition .main-content,
+  body.theme-transition .container,
+  body.theme-transition .category-card,
+  body.theme-transition .category-panel,
+  body.theme-transition .subcat-card,
+  body.theme-transition .site-footer {
+    transition: none !important;
+  }
+}
+
+/* ============================
+   SMOOTH REVEAL: subcategory panel
+   compositor-friendly: opacity + transform + max-height
+   ============================ */
+
+/* collapse state (default) */
+.panel-wrapper .category-panel {
+  opacity: 0;
+  transform: translateY(-8px) scale(0.997);
+  max-height: 0;
+  overflow: hidden;
+  padding-top: 0;
+  padding-bottom: 0;
+  border-width: 0;
+  transition:
+    opacity 220ms cubic-bezier(.22,.9,.32,1),
+    transform 220ms cubic-bezier(.22,.9,.32,1),
+    max-height 300ms cubic-bezier(.22,.9,.32,1),
+    padding 240ms cubic-bezier(.22,.9,.32,1),
+    border-color 220ms cubic-bezier(.22,.9,.32,1);
+  will-change: opacity, transform, max-height;
+}
+
+/* open state when .panel-wrapper has .open */
+.panel-wrapper.open .category-panel {
+  opacity: 1;
+  transform: translateY(0) scale(1);
+  max-height: 1200px; /* large enough to fit content */
+  overflow: visible;
+  padding-top: 18px;
+  padding-bottom: 18px;
+  border-width: 1px;
+  border-color: var(--panel-border);
+}
+
+/* prefer reduced motion: no animation, show instantly */
+@media (prefers-reduced-motion: reduce) {
+  .panel-wrapper .category-panel,
+  .panel-wrapper.open .category-panel {
+    transition: none !important;
+    max-height: none !important;
+    opacity: 1 !important;
+    transform: none !important;
+    padding-top: 18px !important;
+    padding-bottom: 18px !important;
+    border-width: 1px !important;
+  }
+}
+
+.panel-subcategories > * {
+  opacity: 0;
+  transform: translateY(8px);
+  transition: opacity 260ms cubic-bezier(.22,.9,.32,1),
+              transform 260ms cubic-bezier(.22,.9,.32,1);
+  will-change: opacity, transform;
+  /* ensure each item paints on compositing layer */
+  transform-origin: 50% 50%;
+  backface-visibility: hidden;
+}
+
+/* when panel is open, items animate in with stagger */
+.panel-wrapper.open .panel-subcategories > * {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+/* stagger delays (adjust numbers/lightweight): 40ms step */
+.panel-wrapper.open .panel-subcategories > *:nth-child(1) { transition-delay: 40ms; }
+.panel-wrapper.open .panel-subcategories > *:nth-child(2) { transition-delay: 80ms; }
+.panel-wrapper.open .panel-subcategories > *:nth-child(3) { transition-delay: 120ms; }
+.panel-wrapper.open .panel-subcategories > *:nth-child(4) { transition-delay: 160ms; }
+.panel-wrapper.open .panel-subcategories > *:nth-child(5) { transition-delay: 200ms; }
+.panel-wrapper.open .panel-subcategories > *:nth-child(6) { transition-delay: 240ms; }
+.panel-wrapper.open .panel-subcategories > *:nth-child(7) { transition-delay: 280ms; }
+.panel-wrapper.open .panel-subcategories > *:nth-child(8) { transition-delay: 320ms; }
+
+/* reduced-motion fallback: no stagger, show instantly */
+@media (prefers-reduced-motion: reduce) {
+  .panel-subcategories > * {
+    transition: none !important;
+    opacity: 1 !important;
+    transform: none !important;
+  }
+}
+
+/* overlay shown when panel-wrapper has .open */
+.panel-wrapper.open::before {
+  content: "";
+  position: fixed;
+  inset: 0;                     /* cover the viewport */
+  background: rgba(0,0,0,0.28); /* dim the background slightly */
+  -webkit-backdrop-filter: blur(4px);
+  backdrop-filter: blur(4px);   /* macOS-like soft blur */
+  opacity: 0;
+  pointer-events: auto;         /* allow clicks (we handle them in JS) */
+  z-index: 40;                  /* sits below the panel (panel z-index set below) */
+  transition: opacity 220ms cubic-bezier(.22,.9,.32,1);
+  will-change: opacity, backdrop-filter;
+}
+
+/* make the overlay visible when open */
+.panel-wrapper.open::before {
+  opacity: 1;
+}
+
+/* ensure the panel sits above the overlay */
+.panel-wrapper .category-panel {
+  position: relative;
+  z-index: 41;
+}
+
+/* Reduced motion preference: remove blur & transitions */
+@media (prefers-reduced-motion: reduce) {
+  .panel-wrapper.open::before {
+    transition: none !important;
+    -webkit-backdrop-filter: none !important;
+    backdrop-filter: none !important;
+    opacity: 1;
+  }
+}

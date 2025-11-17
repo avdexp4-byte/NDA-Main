@@ -1,0 +1,44 @@
+# Node.js
+node_modules/
+dist/
+build/
+
+# Python
+__pycache__/
+.venv/
+
+# Environment variables
+.env
+.env.local
+.env.*.local
+
+# Logs
+*.log
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+
+# OS generated files
+.DS_Store
+.idea/
+.vscode/
+*.suo
+*.user
+*.bak
+*.ilk
+*.obj
+*.pdb
+*.VC.db
+*.VC.opendb
+*.aps
+*.bsc
+*.ncb
+*.sbr
+*.sdf
+*.ipch
+*.opensdf
+*.tlog
+*.vspscc
+*.vssscc
+*.vsw
+*.code-workspace
